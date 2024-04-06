@@ -6,6 +6,9 @@
   background: #004a8b;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
   cursor: pointer;
+  display: block;
+  width: 0 auto;
+  margin: 0 auto;
 }
 
 .button:focus {
