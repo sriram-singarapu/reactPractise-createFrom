@@ -7,6 +7,7 @@ import ErrorModal from "../../UI/ErrorModal/ErrorModal";
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [clgName, setClgName] = useState("");
   const [error, setError] = useState();
 
   const UserNameHandler = (event) => {
@@ -17,12 +18,20 @@ const AddUser = (props) => {
     setEnteredAge(event.target.value);
   };
 
+  const clgHandler = (event) => {
+    setClgName(event.target.value);
+  };
+
   const addUserHandler = (event) => {
     event.preventDefault();
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+    if (
+      enteredUsername.trim().length === 0 ||
+      enteredAge.trim().length === 0 ||
+      clgName.trim().length === 0
+    ) {
       setError({
         title: "Invalid input",
-        message: "Please enter a valid name and age",
+        message: "Please enter valid details",
       });
       return;
     }
@@ -33,9 +42,10 @@ const AddUser = (props) => {
       });
       return;
     }
-    props.onAddUser(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge, clgName);
     setEnteredAge("");
     setEnteredUsername("");
+    setClgName("");
   };
 
   const confirmHandler = () => {
@@ -68,6 +78,14 @@ const AddUser = (props) => {
             value={enteredAge}
             onChange={AgeHandler}
           />
+
+          <label htmlFor="Clg">College Name</label>
+          <input
+            id="clg"
+            type="text"
+            value={clgName}
+            onChange={clgHandler}
+          ></input>
 
           <Button type="submit">Add User</Button>
         </form>
